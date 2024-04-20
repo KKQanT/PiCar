@@ -4,6 +4,30 @@ The Machine Learning in Science team organized a competition with a dataset of 1
 Our approach involved concatenating pretrained models, VGG16 and DAVE2, and adding a fully connected neural network layer for decision-making to enhance contextual understanding. We aimed to improve contextual awareness by simultaneously predicting angle and speed, achieving generalization with VGG16 balancing information from DAVE2. To ensure model effectiveness, we utilized various generalization techniques such as learning rate adjustment, data augmentation, batch normalization, and dropout regularization.
 
 ## Network Architecture
+<p>
+  <img src="figures/model_overview.png" alt>
+</p>
+<p>
+  <em>Model Overview</em>
+</p>
+
+
+<div style="display: flex; flex-direction: row;">
+  <div style="flex: 1; text-align: center;">
+    <img src="figures/vgg16.png" width="200" height = "500" alt="">
+    <p><em>VGG16 block</em></p>
+  </div>
+  
+  <div style="flex: 1; text-align: center;">
+    <img src="figures/dave2.png" width="200" alt="">
+    <p><em>DAVE2 block</em></p>
+  </div>
+
+  <div style="flex: 1; text-align: center;">
+    <img src="figures/fcc layers.png" width="200" alt="">
+    <p><em>FCC block</em></p>
+  </div>
+</div>
 
 - For both VGG16 and DAVE2:
   - Extract only convolution layers.
