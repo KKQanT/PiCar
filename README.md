@@ -57,7 +57,7 @@ Our approach involved concatenating pretrained models, VGG16 and DAVE2, and addi
 - In such cases, the current state of steering angle appeared to be incorrect, as the car's trajectory was unaffected when stationary.
 - To address this, a modification was made to the loss function to adjust the propagation of information related to steering angle when speed is 0 as following
 
-$$\frac{\sum\limits_{i=1}^{N}[(s_i - \hat s_i)^2 + (\frac{1+s_i}{2})(a_i - \hat{a_i})^2]}{N}$$
+$$Loss = \frac{\sum\limits_{i=1}^{N}[(s_i - \hat s_i)^2 + (\frac{1+s_i}{2})(a_i - \hat{a_i})^2]}{N}$$
 
 where $s$ and $a$ denoted speed and angle respectively
 
