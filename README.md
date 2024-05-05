@@ -224,7 +224,7 @@ $$ {angle}' = 1 - angle $$
   - Achieved MSE scores of 0.02929 (public) and 0.03369 (private).
   
 - **Combined Model Development:**
-  - Combined angle and speed predictions into a single model using the same DAVE2 architecture with linear activation for angle and sigmoid activation for speed.
+  - Combined angle and speed predictions into a single model using the same DAVE2 architecture with linear activation for both angle and speed.
   - Improved scores to 0.02877 (public) and 0.03328 (private).
 
 - **Data Augmentation:**
