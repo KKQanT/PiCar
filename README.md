@@ -1,7 +1,7 @@
 # Self Driving PiCar steering angle and speed prediction
 The Machine Learning in Science team organized a [competition](https://www.kaggle.com/competitions/machine-learning-in-science-ii-2024) with a dataset of 13,800 images collected from manual driving sessions with the SunFounder PiCar V on a handcrafted paper road, featuring mock pedestrians and toy traffic signals. Participants were tasked with creating a unified machine learning model to guide the PiCar using input from its camera to determine both steering angle and speed simultaneously. Evaluation included a private test set using Mean Square Error (MSE) as the metric for speed and angle prediction, and a test drive phase on three circuits with simulated obstacles.
 
-Our approach involved concatenating pretrained models, VGG16 and DAVE2, and adding a fully connected neural network layer for decision-making to enhance contextual understanding. We aimed to improve contextual awareness by simultaneously predicting angle and speed, achieving generalization with VGG16 balancing information from DAVE2. To ensure model effectiveness, we utilized various generalization techniques such as learning rate adjustment, data augmentation, batch normalization, and dropout regularization.
+Our approach involved concatenating pretrained models, VGG16 (imagenet) and DAVE2 (pretrained from [here](https://github.com/berkcomba/Self-Driving-Car-Keras/)), and adding a fully connected neural network layer for decision-making to enhance contextual understanding. We aimed to improve contextual awareness by simultaneously predicting angle and speed, achieving generalization with VGG16 balancing information from DAVE2. To ensure model effectiveness, we utilized various generalization techniques such as learning rate adjustment, data augmentation, batch normalization, and dropout regularization.
 
 ## Network Architecture
 <p>
@@ -97,7 +97,7 @@ where $s$ and $a$ denoted speed and angle respectively
 
 ### Image Flipping
 
-<img src="figures/steering_angle_distribution.png" alt>
+<img width="512px" src="figures/steering_angle_distribution.png" alt>
 
 - As mentioned earlier, we observed a bias in steering angles towards turning right.
 - To address this bias, we randomly flipped images horizontally with a probability of 0.5, assuming that each image has an opposite counterpart in turning.
@@ -214,7 +214,7 @@ $$ {angle}' = 1 - angle $$
 
 ## Train model on all data without overfitting
 
-<img src="figures/k_fold.png" height="300">
+<img width="512px" src="figures/k_fold.png" height="300">
 
 - To ensure our model learns from the entire training dataset and achieves a high score on the competition leaderboard without overfitting, we need to train the model on the entire data while also ensuring generalization.
 - One challenge is the lack of holdout test data when using the entire dataset for training, making it difficult to assess model generalization.
