@@ -11,7 +11,6 @@ Our approach involved concatenating pretrained models, VGG16 and DAVE2, and addi
   <em>Model Overview</em>
 </p>
 
-
 <div style="display: flex; flex-direction: row;">
   <div style="flex: 1; text-align: center;">
     <img src="figures/vgg16.png" width="200" height = "500" alt="">
@@ -63,6 +62,8 @@ where $s$ and $a$ denoted speed and angle respectively
 
 ## Model Training
 
+<img src="figures/training_step0.png" alt>
+
 - First Phase of Training:
   - Freeze all layers from both VGG16 and DAVE2.
   - Train only FCC (Fully Connected Convolution) blocks for 600 epochs.
@@ -70,10 +71,14 @@ where $s$ and $a$ denoted speed and angle respectively
   - Scale down learning rate by a factor of 0.75 every 60 epochs.
   - Trainable parameters: 166,082, which is 2 times lower than the original DAVE2, reducing susceptibility to overfitting.
 
+<img src="figures/training_step1.png" alt>
+
 - Second Phase of Training:
   - Unfreeze the last convolution block of VGG16 and the last three convolution layers of DAVE2.
   - Continue training for 300 epochs to allow convolutions to learn target data information.
   - Set learning rate to $10^{-6}$ for stability during fine-tuning, assuming near-optimal point reached in transfer learning phase.
+
+<img src="figures/training_step2.png" alt>
 
 - Final Phase of Training:
   - Unfreeze the 2nd last convolution block of VGG16 and all convolution layers of DAVE2.
@@ -91,6 +96,8 @@ where $s$ and $a$ denoted speed and angle respectively
   - Employing these methods helps the model learn robust features and variations present in the data, leading to improved generalization performance.
 
 ### Image Flipping
+
+<img src="figures/steering_angle_distribution.png" alt>
 
 - As mentioned earlier, we observed a bias in steering angles towards turning right.
 - To address this bias, we randomly flipped images horizontally with a probability of 0.5, assuming that each image has an opposite counterpart in turning.
@@ -206,6 +213,8 @@ $$ {angle}' = 1 - angle $$
 
 
 ## Train model on all data without overfitting
+
+<img src="figures/k_fold.png" height="300">
 
 - To ensure our model learns from the entire training dataset and achieves a high score on the competition leaderboard without overfitting, we need to train the model on the entire data while also ensuring generalization.
 - One challenge is the lack of holdout test data when using the entire dataset for training, making it difficult to assess model generalization.
