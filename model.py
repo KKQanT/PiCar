@@ -20,9 +20,6 @@ def build_model():
 
     dave2 = tf.keras.models.load_model(DAVE2_PATH)
 
-    ##Train Model
-    tf.keras.backend.clear_session()
-
     X_input1 = Input(shape=(*DIM, 3))
     for i, layer in enumerate(dave2.layers[:5]):
         layer.trainable = False
